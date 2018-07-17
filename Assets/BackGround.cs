@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackGround : MonoBehaviour {
     float r, g, b;
@@ -35,5 +36,8 @@ public class BackGround : MonoBehaviour {
         ColourSwitch(col);
         Debug.Log("Red = "+ r + " green = " + g +" blue = "+ b);
 
-	}
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene(0);
+
+    }
 }

@@ -12,4 +12,10 @@ public class Navigation : MonoBehaviour {
     {
         SceneManager.LoadScene(2);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+    }
 }
