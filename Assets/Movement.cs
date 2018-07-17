@@ -4,19 +4,19 @@ using UnityEngine;
 
 
 public class Movement : MonoBehaviour {
-    int speed;
+    public int speed;
     Vector3 pos;
     Rigidbody2D player;
 	// Use this for initialization
 	void Start () {
-        speed = 10;
+        speed = 5;
         player = this.GetComponent<Rigidbody2D>();
 	}
 	
     private void Move(Vector3 target)
     {
-        Vector3 temp = Vector3.Lerp(this.transform.position, target, Time.deltaTime * 5.0f);
-        this.transform.position = temp;
+        this.transform.position = Vector3.Lerp(this.transform.position, target, Time.deltaTime * speed);
+        //this.transform.position = temp;
         
 
     }
@@ -32,6 +32,6 @@ public class Movement : MonoBehaviour {
             }
         }
         Move(pos);
-        Debug.Log("Pos = " + pos);
+        //Debug.Log("Pos = " + pos);
 	}
 }
