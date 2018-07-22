@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour {
     Rigidbody2D player;
 	// Use this for initialization
 	void Start () {
-        speed = 5;
+        speed = 2;
         player = this.GetComponent<Rigidbody2D>();
 	}
 	
@@ -19,6 +19,13 @@ public class Movement : MonoBehaviour {
         //this.transform.position = temp;
         
 
+    }
+    private Vector3 ClampPos(Vector3 pos)
+    {
+        pos.x = Mathf.Clamp(pos.x, -200, 200);
+        pos.y = Mathf.Clamp(pos.y, -100, 100);
+        
+        return pos;
     }
 	// Update is called once per frame
 	void Update () {
@@ -31,6 +38,7 @@ public class Movement : MonoBehaviour {
                 pos = hit.point;
             }
         }
+        pos = ClampPos(pos);
         Move(pos);
         //Debug.Log("Pos = " + pos);
 	}
