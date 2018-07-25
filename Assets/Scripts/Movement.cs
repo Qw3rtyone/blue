@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour {
     Rigidbody2D player;
 	// Use this for initialization
 	void Start () {
-        speed = 5;
+        speed = 2;
         player = this.GetComponent<Rigidbody2D>();
         
     }

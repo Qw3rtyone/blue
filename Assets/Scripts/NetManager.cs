@@ -36,13 +36,13 @@ public class NetManager : MonoBehaviour {
     public void AddPlayerServer(NetworkMessage Netmsg)
     {
         var n = Netmsg.ReadMessage<AddPlayerMessage>();
-        GameObject go = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
+        GameObject go = Instantiate(Resources.Load("Prefabs/NetPlayer")) as GameObject;
         NetworkServer.AddPlayerForConnection(Netmsg.conn, go, n.playerControllerId);
 
     }
     void SetupClient()
     {
-        ClientScene.RegisterPrefab(Resources.Load("Prefabs/Player") as GameObject);
+        ClientScene.RegisterPrefab(Resources.Load("Prefabs/NetPlayer") as GameObject);
         myClient = new NetworkClient();
         myClient.RegisterHandler(MsgType.Connect, OnConnected);
         myClient.Connect("localhost", 4444);

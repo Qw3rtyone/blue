@@ -11,7 +11,7 @@ public class Glowys : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        glowyCount = 10;
+        glowyCount = 25;
         population = 0;
     }
 
