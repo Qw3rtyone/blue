@@ -8,6 +8,7 @@ public class NetMovement : NetworkBehaviour
     public int speed;
     Vector3 pos,offset;
     Rigidbody2D player;
+
     // Use this for initialization
     void Start()
     {

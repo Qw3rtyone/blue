@@ -4,18 +4,25 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 
-public class NetManager : MonoBehaviour {
+public class NetManager : NetworkDiscovery {
 
     public bool isAtStartup = true;
     public NetworkIdentity prefab;
     NetworkClient myClient;
 
+    public void Start()
+    {
+        broadcastPort = 4444;
+        Initialize();
+        
+    }
     public void Host()
     {
         if (isAtStartup)
         {
             SetupServer();
             SetupLocalClient();
+            StartAsServer();
         }
     }
     public void Join()
@@ -23,6 +30,7 @@ public class NetManager : MonoBehaviour {
         if(isAtStartup)
         {
             SetupClient();
+            StartAsClient();
         }
     }
 
@@ -45,6 +53,7 @@ public class NetManager : MonoBehaviour {
         ClientScene.RegisterPrefab(Resources.Load("Prefabs/NetPlayer") as GameObject);
         myClient = new NetworkClient();
         myClient.RegisterHandler(MsgType.Connect, OnConnected);
+        
         myClient.Connect("localhost", 4444);
         isAtStartup = false;
     }
@@ -62,9 +71,10 @@ public class NetManager : MonoBehaviour {
         ClientScene.Ready(netMsg.conn);
         ClientScene.AddPlayer(1);
     }
-
-    void Update()
+    public override void OnReceivedBroadcast(string fromAddress, string data)
     {
-        Debug.Log("Number of players = " + Network.connections.Length);
+        Debug.Log("Received broadcast from: " + fromAddress + " with the data: " + data);
+        //myClient.Connect(fromAddress,4444);
     }
+
 }
