@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour {
     Rigidbody2D player;
 	// Use this for initialization
 	void Start () {
-        speed = 2;
+        speed = 5;
         player = this.GetComponent<Rigidbody2D>();
         
     }
@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour {
         
 
     }
+<<<<<<< HEAD:Assets/Scripts/Movement.cs
     private Vector3 ClampPos(Vector3 pos)
     {
         pos.x = Mathf.Clamp(pos.x, -200, 200);
@@ -33,6 +34,10 @@ public class Movement : MonoBehaviour {
     void Update()
     {
         
+=======
+	// Update is called once per frame
+	void Update () {
+>>>>>>> parent of 5db14b5... Collectables:Assets/Movement.cs
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
@@ -42,7 +47,6 @@ public class Movement : MonoBehaviour {
                 pos = hit.point;
             }
         }
-        pos = ClampPos(pos);
         Move(pos);
         //Debug.Log("Pos = " + pos);
         
