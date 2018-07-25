@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class BackGround : MonoBehaviour {
     float r, g, b;
     Color col;
-	// Use this for initialization
-	void Start () {
+    public GameObject button1, button2;
+    // Use this for initialization
+    void Start () {
         r = 0;
         g = 0;
         b = 0;
@@ -34,10 +35,19 @@ public class BackGround : MonoBehaviour {
             col = RandomColour();
 
         ColourSwitch(col);
-        Debug.Log("Red = "+ r + " green = " + g +" blue = "+ b);
+        //Debug.Log("Red = "+ r + " green = " + g +" blue = "+ b);
 
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(0);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            
+            //button1;// = GameObject.FindGameObjectWithTag("button1");
+            //button2 = GameObject.FindGameObjectWithTag("button2");
+            button1.SetActive(true);
+            button2.SetActive(true);
+        }
 
     }
 }

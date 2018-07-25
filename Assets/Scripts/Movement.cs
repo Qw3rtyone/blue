@@ -11,11 +11,13 @@ public class Movement : MonoBehaviour {
 	void Start () {
         speed = 2;
         player = this.GetComponent<Rigidbody2D>();
-	}
+        
+    }
 	
     private void Move(Vector3 target)
     {
         this.transform.position = Vector3.Lerp(this.transform.position, target, Time.deltaTime * speed);
+        
         //this.transform.position = temp;
         
 
@@ -27,8 +29,10 @@ public class Movement : MonoBehaviour {
         
         return pos;
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
+        
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
@@ -41,5 +45,7 @@ public class Movement : MonoBehaviour {
         pos = ClampPos(pos);
         Move(pos);
         //Debug.Log("Pos = " + pos);
-	}
+        
+
+    }
 }

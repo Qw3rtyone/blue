@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/blue.unity
     guid: 721ef8c31f4bdc14ea6fab1c42fccf52
+  - enabled: 1
+    path: Assets/Multi.unity
+    guid: 34f5a69c97be9dd4eb5553dcd1dff2f9
   m_configObjects: {}
