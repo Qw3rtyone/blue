@@ -22,8 +22,7 @@ public class Movement : MonoBehaviour {
         
 
     }
-<<<<<<< HEAD:Assets/Movement.cs
-<<<<<<< HEAD:Assets/Scripts/Movement.cs
+
     private Vector3 ClampPos(Vector3 pos)
     {
         pos.x = Mathf.Clamp(pos.x, -200, 200);
@@ -31,16 +30,10 @@ public class Movement : MonoBehaviour {
         
         return pos;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-=======
-=======
->>>>>>> parent of 5db14b5... Collectables:Assets/Movement.cs
+
 	// Update is called once per frame
 	void Update () {
->>>>>>> parent of 5db14b5... Collectables:Assets/Movement.cs
+
         if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
