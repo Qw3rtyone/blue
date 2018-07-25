@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour {
         
 
     }
+<<<<<<< HEAD:Assets/Movement.cs
 <<<<<<< HEAD:Assets/Scripts/Movement.cs
     private Vector3 ClampPos(Vector3 pos)
     {
@@ -35,6 +36,8 @@ public class Movement : MonoBehaviour {
     {
         
 =======
+=======
+>>>>>>> parent of 5db14b5... Collectables:Assets/Movement.cs
 	// Update is called once per frame
 	void Update () {
 >>>>>>> parent of 5db14b5... Collectables:Assets/Movement.cs

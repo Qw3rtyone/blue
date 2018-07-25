@@ -284,6 +284,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+>>>>>>> parent of 5db14b5... Collectables
+=======
 >>>>>>> parent of 5db14b5... Collectables
 --- !u!1 &1758910752
 GameObject:
