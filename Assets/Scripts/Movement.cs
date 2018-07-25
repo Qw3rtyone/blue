@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour {
                 pos = hit.point;
             }
         }
+        pos = ClampPos(pos);
         Move(pos);
         //Debug.Log("Pos = " + pos);
         

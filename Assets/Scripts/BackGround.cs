@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class BackGround : MonoBehaviour {
     float r, g, b;
     Color col;
-    public GameObject button1, button2;
     // Use this for initialization
     void Start () {
         r = 0;
@@ -39,15 +38,6 @@ public class BackGround : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(0);
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            
-            //button1;// = GameObject.FindGameObjectWithTag("button1");
-            //button2 = GameObject.FindGameObjectWithTag("button2");
-            button1.SetActive(true);
-            button2.SetActive(true);
-        }
 
     }
 }
