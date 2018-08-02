@@ -12,34 +12,39 @@ public class NetManager : NetworkDiscovery {
 
     public void Start()
     {
-        broadcastPort = 4444;
+        broadcastPort = 4440;
+        NetworkServer.Reset();
         Initialize();
         
     }
     public void Host()
     {
         if (isAtStartup)
-        {
+        {            
+            //StartAsServer();
             SetupServer();
             SetupLocalClient();
-            StartAsServer();
+
         }
     }
     public void Join()
     {
         if(isAtStartup)
         {
-            SetupClient();
+            //SetupClient();
             StartAsClient();
+
         }
     }
-
+    
     void SetupServer()
     {
+
         NetworkServer.Listen(4444);
+        
         isAtStartup = false;
         NetworkServer.RegisterHandler(MsgType.AddPlayer, AddPlayerServer);
-
+        StartAsServer();
     }
     public void AddPlayerServer(NetworkMessage Netmsg)
     {
@@ -54,7 +59,7 @@ public class NetManager : NetworkDiscovery {
         myClient = new NetworkClient();
         myClient.RegisterHandler(MsgType.Connect, OnConnected);
         
-        myClient.Connect("localhost", 4444);
+        //myClient.Connect("localhost", 4444);
         isAtStartup = false;
     }
 
@@ -67,14 +72,23 @@ public class NetManager : NetworkDiscovery {
 
     public void OnConnected(NetworkMessage netMsg)
     {
-        Debug.Log("Connected");
+        Debug.Log("Connected?");
         ClientScene.Ready(netMsg.conn);
         ClientScene.AddPlayer(1);
     }
     public override void OnReceivedBroadcast(string fromAddress, string data)
     {
-        Debug.Log("Received broadcast from: " + fromAddress + " with the data: " + data);
+        Debug.Log("Received broadcast from: " + fromAddress + ". Data: " + data + ". Hooray!!");
+        //myClient
         //myClient.Connect(fromAddress,4444);
-    }
+        if (isAtStartup)
+        {
+            ClientScene.RegisterPrefab(Resources.Load("Prefabs/NetPlayer") as GameObject);
+            myClient = new NetworkClient();
+            myClient.RegisterHandler(MsgType.Connect, OnConnected);
+            myClient.Connect(fromAddress, 4444);
 
+            isAtStartup = false;
+        }
+    }
 }
