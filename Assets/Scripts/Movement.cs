@@ -35,11 +35,14 @@ public class Movement : MonoBehaviour {
         Score.GetComponent<Text>().text = safeGuard.ToString();
         Debug.Log("Safe = " + safeGuard);
     }
-    private void RemoveGuard()
+    private void RemoveGuard(GameObject gameObject)
     {
         safeGuard--;
-
+        Destroy(gameObject);
         Score.GetComponent<Text>().text = safeGuard.ToString();
+        GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
+        go.transform.position = gameObject.transform.position;
+
         Debug.Log("Safe = " + safeGuard);
     }
     private Vector3 ClampPos(Vector3 pos)
@@ -60,12 +63,13 @@ public class Movement : MonoBehaviour {
 
         if (collision.gameObject.name == "Enemy")
         {
-            RemoveGuard();
+            RemoveGuard(collision.gameObject);
             if(safeGuard < 0)
             {
-                Time.timeScale = 0f;
+                Time.timeScale = 0.05f;
                 gameOver.SetActive(true);
-                Destroy(collision.gameObject);
+                
+                Destroy(this.gameObject);
                 Debug.Log("Stop! You Died!");
             }
         }
