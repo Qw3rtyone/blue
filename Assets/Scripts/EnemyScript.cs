@@ -22,16 +22,17 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        target = player.transform.position;
-        if (Vector2.Distance(target, transform.position) < 10 && bonus >= 0)
-            bonus += 0.1f;
-        else if(bonus > 0.0)
-            bonus-= 0.5f;
-        if (bonus < 0)
-            bonus = 0;
-        myTransform.position = Vector2.MoveTowards(myTransform.position, target, (moveSpeed + bonus)* Time.deltaTime);
-        
+        if (player)
+        {
+            target = player.transform.position;
+            if (Vector2.Distance(target, transform.position) < 10 && bonus >= 0)
+                bonus += 0.1f;
+            else if (bonus > 0.0)
+                bonus -= 0.5f;
+            if (bonus < 0)
+                bonus = 0;
+            myTransform.position = Vector2.MoveTowards(myTransform.position, target, (moveSpeed + bonus) * Time.deltaTime);
+        }
 
     }
 }

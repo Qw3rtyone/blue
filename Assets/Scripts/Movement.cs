@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
     public int speed;
-    Vector3 pos;
+    Vector3 pos, OFFSET = new Vector3(0, 0, -30);
     Rigidbody2D player;
-    public GameObject Score, gameOver;
+    public GameObject Score;
+    public GameObject[] gameOver;
     int points,safeGuard;
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,15 @@ public class Movement : MonoBehaviour {
         speed = 2;
         player = this.GetComponent<Rigidbody2D>();
         Score = GameObject.FindGameObjectWithTag("Score");
-        gameOver.SetActive(false);
+        GameStart();
+       
         Time.timeScale = 1f;
     }
 	
     private void Move(Vector3 target)
     {
         this.transform.position = Vector3.Lerp(this.transform.position, target, Time.deltaTime * speed);
-        
+        Camera.main.transform.position = this.transform.position + OFFSET;
         //this.transform.position = temp;
         
 
@@ -52,7 +54,22 @@ public class Movement : MonoBehaviour {
         
         return pos;
     }
-
+    private void GameStart()
+    {
+        foreach (GameObject gameover in gameOver)
+        {
+            Time.timeScale = 1.0f;
+            gameover.SetActive(false);
+        }
+    }
+    private void GameOver()
+    {
+        foreach (GameObject gameover in gameOver)
+        {
+            Time.timeScale = 0.05f;
+            gameover.SetActive(true);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Glowy")
@@ -66,9 +83,11 @@ public class Movement : MonoBehaviour {
             RemoveGuard(collision.gameObject);
             if(safeGuard < 0)
             {
-                Time.timeScale = 0.05f;
-                gameOver.SetActive(true);
+                GameOver();
                 
+                GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
+                go.transform.position = this.gameObject.transform.position;
+
                 Destroy(this.gameObject);
                 Debug.Log("Stop! You Died!");
             }
