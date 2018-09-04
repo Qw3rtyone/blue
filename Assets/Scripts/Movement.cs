@@ -7,16 +7,18 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
     public int speed;
-    Vector3 pos, OFFSET = new Vector3(0, 0, -30);
+    Vector3 pos, OFFSET = new Vector3(0, 0, 30);
     Rigidbody2D player;
-    public GameObject Score;
+    public GameObject Score, Player;
     public GameObject[] gameOver;
     int points,safeGuard;
 	// Use this for initialization
 	void Start () {
         points = 0;
         speed = 2;
-        player = this.GetComponent<Rigidbody2D>();
+        Player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
+        player = Player.GetComponent<Rigidbody2D>();
+        Player.transform.position = this.transform.position + OFFSET;
         Score = GameObject.FindGameObjectWithTag("Score");
         GameStart();
        
@@ -26,10 +28,34 @@ public class Movement : MonoBehaviour {
     private void Move(Vector3 target)
     {
         this.transform.position = Vector3.Lerp(this.transform.position, target, Time.deltaTime * speed);
-        Camera.main.transform.position = this.transform.position + OFFSET;
+        if(Player != null)
+            Player.transform.position = this.transform.position + OFFSET;
         //this.transform.position = temp;
         
 
+    }
+    public void Collision(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Glowy")
+        {
+            Collect();
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.name == "Enemy")
+        {
+            RemoveGuard(collision.gameObject);
+            if (safeGuard < 0)
+            {
+                GameOver();
+
+                GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
+                go.transform.position = Player.gameObject.transform.position;
+
+                Destroy(Player);
+                Debug.Log("Stop! You Died!");
+            }
+        }
     }
     private void Collect()
     {
@@ -43,7 +69,7 @@ public class Movement : MonoBehaviour {
         Destroy(gameObject);
         Score.GetComponent<Text>().text = safeGuard.ToString();
         GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
-        go.transform.position = gameObject.transform.position;
+        go.transform.position = Player.gameObject.transform.position;
 
         Debug.Log("Safe = " + safeGuard);
     }
@@ -51,7 +77,7 @@ public class Movement : MonoBehaviour {
     {
         pos.x = Mathf.Clamp(pos.x, -200, 200);
         pos.y = Mathf.Clamp(pos.y, -100, 100);
-        
+        pos.z = -30;
         return pos;
     }
     private void GameStart()
@@ -70,29 +96,7 @@ public class Movement : MonoBehaviour {
             gameover.SetActive(true);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Glowy")
-        {
-            Collect();
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.gameObject.name == "Enemy")
-        {
-            RemoveGuard(collision.gameObject);
-            if(safeGuard < 0)
-            {
-                GameOver();
-                
-                GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
-                go.transform.position = this.gameObject.transform.position;
-
-                Destroy(this.gameObject);
-                Debug.Log("Stop! You Died!");
-            }
-        }
-    }
+    
     // Update is called once per frame
     void Update () {
 

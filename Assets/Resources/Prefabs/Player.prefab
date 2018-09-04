@@ -20,13 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4957986358255970}
   - component: {fileID: 212681707081676098}
-  - component: {fileID: 114307228800780260}
-  - component: {fileID: 114501238269030012}
-  - component: {fileID: 114023890382190360}
   - component: {fileID: 96658391915413728}
   - component: {fileID: 114496987976478820}
   - component: {fileID: 58256622315828106}
   - component: {fileID: 50370631537298962}
+  - component: {fileID: 114687547171328232}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,36 +180,6 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114023890382190360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110589073888852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a79d77434aeb24ba5087e9c93a8a66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  Score: {fileID: 0}
-  gameOver:
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &114307228800780260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110589073888852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1110589073888852}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!114 &114496987976478820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 1327945023, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114501238269030012
+--- !u!114 &114687547171328232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -231,16 +199,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1110589073888852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 22400cc6c57794544b9ebbf847cce0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!212 &212681707081676098
 SpriteRenderer:
   m_ObjectHideFlags: 1
