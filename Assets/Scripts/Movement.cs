@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour {
         if (collision.gameObject.name == "Enemy")
         {
             RemoveGuard(collision.gameObject);
-            if (safeGuard < 0)
+            if (safeGuard < 0 && gameOver.Length > 0)
             {
                 GameOver();
 
@@ -82,11 +82,13 @@ public class Movement : MonoBehaviour {
     }
     private void GameStart()
     {
+        Time.timeScale = 1.0f;
+
         foreach (GameObject gameover in gameOver)
         {
-            Time.timeScale = 1.0f;
             gameover.SetActive(false);
         }
+        
     }
     private void GameOver()
     {
