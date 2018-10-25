@@ -9,7 +9,8 @@ public class Movement : MonoBehaviour {
     public int speed;
     Vector3 pos, OFFSET = new Vector3(0, 0, 30);
     Rigidbody2D player;
-    public GameObject Score, Player;
+    public GameObject ShieldScore, Player, Points;
+    public Spawner Spawner;
     public GameObject[] gameOver;
     int points,safeGuard;
 	// Use this for initialization
@@ -19,7 +20,9 @@ public class Movement : MonoBehaviour {
         Player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
         player = Player.GetComponent<Rigidbody2D>();
         Player.transform.position = this.transform.position + OFFSET;
-        Score = GameObject.FindGameObjectWithTag("Score");
+        ShieldScore = GameObject.FindGameObjectWithTag("ShieldScore");
+        Spawner = GameObject.FindGameObjectWithTag("Quad").GetComponent<Spawner>();
+        Points = GameObject.FindGameObjectWithTag("Points");
         GameStart();
        
         Time.timeScale = 1f;
@@ -60,14 +63,20 @@ public class Movement : MonoBehaviour {
     private void Collect()
     {
         safeGuard += 1;
-        Score.GetComponent<Text>().text = safeGuard.ToString();
+        ShieldScore.GetComponent<Text>().text = safeGuard.ToString();
         Debug.Log("Safe = " + safeGuard);
     }
     private void RemoveGuard(GameObject gameObject)
     {
+        Spawner.enemies--;
         safeGuard--;
+        points += 10;
+
         Destroy(gameObject);
-        Score.GetComponent<Text>().text = safeGuard.ToString();
+
+        ShieldScore.GetComponent<Text>().text = safeGuard.ToString();
+        Points.GetComponent<Text>().text = points.ToString();
+
         GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
         go.transform.position = Player.gameObject.transform.position;
 
@@ -83,11 +92,13 @@ public class Movement : MonoBehaviour {
     private void GameStart()
     {
         Time.timeScale = 1.0f;
-
+        // deactivate gameover overlay after setting time to normal
         foreach (GameObject gameover in gameOver)
         {
             gameover.SetActive(false);
         }
+        //set initial points to 0 at start of game
+        Points.GetComponent<Text>().text = points.ToString();
         
     }
     private void GameOver()

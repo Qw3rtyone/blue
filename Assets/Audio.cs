@@ -24,7 +24,7 @@ public class Audio : MonoBehaviour {
     {
 
         heightMultiplier = 100;
-        speedMultiplier = 100;
+        speedMultiplier = 10;
         //ps = this.GetComponentInChildren<ParticleSystem>();
     }
 

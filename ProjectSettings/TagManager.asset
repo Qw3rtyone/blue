@@ -9,6 +9,9 @@ TagManager:
   - Camera
   - UI
   - Score
+  - Quad
+  - ShieldScore
+  - Points
   layers:
   - Default
   - TransparentFX

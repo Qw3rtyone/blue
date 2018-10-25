@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
 
     public int glowyCount, enemyCount;
-    int population, enemies;
+    public int population, enemies;
     GameObject gHolder, eHolder;
     // Use this for initialization
     void Start()

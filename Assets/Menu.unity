@@ -378,7 +378,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0d700f1e8cea6204f9d03ab6619164b3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: db735156f4a2447468be2899c9e5e121, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2073,7 +2073,7 @@ MonoBehaviour:
   heightMultiplier: 100
   numberOfSamples: 256
   fftWindow: 1
-  lerpTime: 1
+  lerpTime: 0.5
 --- !u!4 &1987528125 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4957916099875680, guid: dbbd399270542d043a3878a874d32e39,
