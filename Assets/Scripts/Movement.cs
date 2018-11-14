@@ -76,11 +76,26 @@ public class Movement : MonoBehaviour {
 
         ShieldScore.GetComponent<Text>().text = safeGuard.ToString();
         Points.GetComponent<Text>().text = points.ToString();
+        
+        //The explosion effect
+        GameObject ex = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
+        ex.transform.position = Player.gameObject.transform.position;
 
-        GameObject go = Instantiate(Resources.Load("Prefabs/Dead")) as GameObject;
-        go.transform.position = Player.gameObject.transform.position;
+        FloatingPoints();
 
-        Debug.Log("Safe = " + safeGuard);
+        
+        //Debug.Log("Safe = " + safeGuard);
+    }
+    
+    private void FloatingPoints()
+    {
+        //The floating score (Possible bonus points for quick kills)
+        GameObject po = Instantiate(Resources.Load("Prefabs/KillPoints")) as GameObject;
+        po.GetComponent<TextMesh>().text = "10";
+        po.GetComponent<TextMesh>().characterSize = 1;
+        po.AddComponent<Suicide>();
+        po.transform.position = Player.gameObject.transform.position;
+
     }
     private Vector3 ClampPos(Vector3 pos)
     {
